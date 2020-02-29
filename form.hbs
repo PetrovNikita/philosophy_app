@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="commentForm\form.css">
+        <link type="text/css" rel="stylesheet" href="commentForm\_borderColor_yellow\commentForm_borderColor_yellow.css">
+        <link type="text/css" rel="stylesheet" href="commentForm\commemtFormBody\commemtFormBody.css">
+        <link type="text/css" rel="stylesheet" href="commentForm\commemtFormBody\_focused\commemtFormBody_focused.css">
+        <link type="text/css" rel="stylesheet" href="commentForm\commemtFormBody\formFieldSet\formFieldSet.css">
+        <link type="text/css" rel="stylesheet" href="commentForm\formSubmit\formSubmit.css">
+        <link type="text/css" rel="stylesheet" href="commentForm\formSubmit\_content_center\formSubmit_content_center.css">
+        <link type="text/css" rel="stylesheet" href="commentForm\formSubmit\__button\formSubmit__button.css">
+        <link type="text/css" rel="stylesheet" href="commentForm\formSubmit\__button\_size_m\formSubmit__button_size_m.css">
+        <link type="text/css" rel="stylesheet" href="commentForm\formSubmit\__button\_color_lGreen\formSubmit__button_color_lGreen.css">
+        <script type="module" defer src="commentForm\scripts\mvc_form.js"></script>
+        <script defer src="commentForm\scripts\topicsNav.js"></script>
+
+    </head>
+    <body>
+        {{>topicsNav}}
+        <p>Hello, {{userLastName}}</p>
+        Content.
+        <div class = "article">
+            joke, haha:))).
+        </div>
+        <form class="commentForm commentForm_borderColor_yellow" action="localhost:3000/user" method="post">
+            <div class="commemtFormBody commemtFormBody_focused">
+                <fieldset class="formFieldSet">
+                    Where you want to add comment?
+                    <select id = "commentPlace" name="place">
+                        <option value="append">In the end of joke.</option>
+                        <option value="after" selected>After joke.</option>
+                        <option value="cancel">No comment.</option>
+                    </select>
+                </fieldset>
+                <textarea class="formField" name="commentText" onfocus="this.innerHTML=''">Write your comment</textarea>
+                <input type="text" class="formField" name="userLogin" onfocus="this.value=''" value="Enter your login">
+            </div>
+            <div class="formSubmit formSubmit_content_center formSubmit_size_m">
+                <input class="formSubmit__button formSubmit__button_color_lGreen formSubmit__button_size_m" value="add" type="submit">
+            </div>
+        </form>
+        <br>Content2.
+        <form class = "getCommentForm" action="" method="POST">
+            <input type="text" class="formField" name="userId" onfocus="this.value=''" value="Enter ID of user to watch his comment">
+        </form>
+    </body>
+</html>

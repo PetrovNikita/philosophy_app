@@ -1,0 +1,56 @@
+.registrForm {
+    display: inline-block;
+    border: 2px solid yellow;
+    border-radius: 10px;
+}
+
+.loginForm {
+    display: inline-block;
+    border: 2px solid green;
+    border-radius: 10px;
+}
+
+.registrFormField {
+    display: inline;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid blanchedalmond;
+    border-radius: 5px;
+    background-color: lightgrey;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.registrFormField:focus {
+    background-color: yellow;
+}
+
+.registrFormField:hover {
+    background-color: lightgreen;
+}
+
+.registrFormPolicyAgree {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid blanchedalmond;
+    border-radius: 5px;
+    background-color: lightgrey;
+    cursor: pointer;
+}
+
+.registrFormSubmit {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    
+    padding: 5px 10px;
+}
+
+.registrFormSubmitButton {
+    width: 50%;
+    background-color: yellow;
+    border: 1px solid black;
+    border-radius: 10%;
+}
+

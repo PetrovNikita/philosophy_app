@@ -1,0 +1,52 @@
+
+$formSubmitClass: formSubmit;
+
+
+@mixin formBorderColor ($borderColor) {
+    border-color: $borderColor;
+}
+
+
+
+#note {
+    background-color: hsla(86, 100%, 50%, 0.3);
+    color: black;
+}
+
+.commentForm {
+    display: inline-block;
+    border: 2px solid;
+    border-radius: 10px;
+    margin: 10px;
+
+    @include formBorderColor(yellow);
+}
+
+.formField {
+    display: block;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.#{$formSubmitClass} {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 40px;
+}
+
+.formSubmit__button {
+    border: 0px;
+    width: 50%;
+    height: 75%;
+    border-radius: 5px;
+    background-color: hsla(86, 100%, 50%, 0.3);
+    margin-bottom: 25%;
+}
+
+:focus {
+    border: solid 2px hsla(86, 100%, 50%, 0.3);
+}
+

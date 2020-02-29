@@ -1,0 +1,20 @@
+.categoryName {
+    margin: 10px;
+    background-color: mediumaquamarine;
+    text-align: center;
+}
+
+.categoryName:hover {
+    border: 2px solid greenyellow;
+}
+
+.textsNames {
+    margin: 10px;
+    background-color: mediumorchid;
+    text-align: center;
+}
+
+.formHeader {
+    margin: 10px;
+    text-align: center;
+}

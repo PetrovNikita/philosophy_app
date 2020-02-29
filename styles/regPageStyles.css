@@ -1,0 +1,33 @@
+.main {
+    display: flex;
+    flex-direction: row;
+}
+
+.categoriesNavContainer {
+    flex-basis: 40%;
+    background-color: burlywood;
+    cursor: pointer;
+}
+
+.navOpenButton {
+    display: inline;
+    position: fixed;
+    left: 70%;
+    top: 50%;
+}
+
+.textAndFormContainer {
+    flex-basis: 100%;
+}
+
+.textsContainer {
+    grid-area: text;
+    background-color: chartreuse;
+}
+
+.registrFormContainer {
+    grid-area: form;
+    background-color: coral;
+}
+
+
