@@ -1,5 +1,6 @@
 import {model as model, view as view} from '/regForm/scripts/mvc_regForm.js';
 import {view as header_view} from '/header/scripts/mvc_header.js';
+import {updateToTextsViewingPage} from '/textsViewingPage/updateToTextsViewingPage.js'
 
 export class Controller {
 
@@ -127,6 +128,10 @@ export class Controller {
 
     incorrectFormData() {
         view.createIncorrectNotification();
+    }
+
+    toTextsViewingPage() {
+        updateToTextsViewingPage();
     }
 
 }

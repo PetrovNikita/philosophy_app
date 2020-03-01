@@ -1,8 +1,6 @@
+
+
 let navButtonAdd = window.matchMedia("(max-width: 600px)").matches;
-
-class Model {
-
-};
 
 class View {
     constructor() {
@@ -13,6 +11,7 @@ class View {
     addListeners() {
         let categoryNames = document.querySelector('.categoriesNav');
         categoryNames.addEventListener('mousedown', event => controller.openTextsNames(event));
+        categoryNames.addEventListener('click', event => controller.getChoosenText(event));
     }
 
     addNavCreateButton() {
@@ -30,6 +29,10 @@ class View {
             
             document.querySelector('.main').append(navOpenButton);
         };
+    }
+
+    showChoosenText(textObj) {
+        document.querySelector('.textsContainer').innerHTML = `<h2>${textObj.textName}</h2>${textObj.textBody}`;
     }
 
 }
@@ -51,7 +54,26 @@ class Controller {
         Controller.openedTextsParent == event.target.parentNode ? Controller.openedTextsParent = null : Controller.openedTextsParent = event.target.parentNode;
     }
 
+    getChoosenText(event) {
+        if (!event.target.classList.contains('textsNames')) return false;
+
+        let textObj = model.getText(event.target.innerText)
+            .then(res => {
+                console.log(res);
+                view.showChoosenText(res);
+            });
+    }
+
+}
+
+class Model {
+    async getText(textName) {
+        let textObj = await fetch(`/getText/${textName}`);
+        let text = await textObj.json();
+        return text;
+    }
 }
 
 let controller = new Controller();
 let view = new View();
+let model = new Model();

@@ -33,3 +33,35 @@ module.exports.getCategories = async function() {
     //for (let o of c) await Category.create(o);
     return await Category.find({}); 
 }
+
+//Добавление текстов.
+/*let texts = [
+    {
+        textName: 'The most main in person',
+        textBody: '<div>What for you is the most important thing in other person?</div>',
+    },
+    {
+        textName: 'Fight or not',
+        textBody: '<span>What would you choose?</span>',
+    },
+    {
+        textName: 'The most main thing in live',
+        textBody: '<p>Happiness - the most important think in your live. What makes you happy?</p>',
+    }
+];
+console.log('gets');
+schemas.Text.insertMany(texts, (err) => console.log(err)); */
+
+module.exports.getText = async function(req, res) {
+    console.log(req.path);
+    let textNameStr = req.params["textName"];
+    let textDoc = await schemas.Text.findOne({textName: textNameStr}, (err, res) =>  console.log);
+    if (textDoc) {
+        res.send(JSON.stringify(textDoc));
+        console.log(textDoc);
+        console.log("Text sended.");
+    } else {
+        res.send("Text not found");
+        console.log("Text not found");
+    };
+}

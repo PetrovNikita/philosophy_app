@@ -12,7 +12,8 @@ export class Model {
             console.log(resp);
             if (resp == 'success') {
     //переход на страницу с формами.
-                document.location.href = 'http://localhost:3000/add';
+                //document.location.href = 'http://localhost:3000/add';
+                controller.toTextsViewingPage();
             };
             if (resp == 'User_Exist') {
                 controller.incorrectFormData();

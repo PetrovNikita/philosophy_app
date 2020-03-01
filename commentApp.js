@@ -143,6 +143,9 @@ app.post('/post/comment', async (req, res) => {
     }
 } );
 
+//выдача текста при нажатии в категориях
+app.get('/getText/:textName', (req, res) => gets.getText(req, res).catch((err) => console.log(err)) );
+
 process.on("SIGINT", () => {
     dbClient.close();
     process.exit();

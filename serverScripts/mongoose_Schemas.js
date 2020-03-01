@@ -30,3 +30,9 @@ let categorySchema = new Schema({
     textsNames: [String],
 })
 module.exports.Category = mongoose.model("Category", categorySchema);
+
+let textSchema = new Schema({
+    textName: String,
+    textBody: String,
+})
+module.exports.Text = mongoose.model("Text", textSchema);
