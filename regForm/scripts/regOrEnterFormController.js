@@ -6,19 +6,12 @@ export class Controller {
     formDataToModel(event) {
         event.preventDefault();
         
-        for (let inputElem of event.target.querySelectorAll('.registrFormField')) {
+        for (let inputElem of event.target.querySelectorAll('.inputContainer input')) {
             console.log(inputElem.name);
-            if (!this.submitValidationField(inputElem) && inputElem.name != 'policyAgree') {
-                console.log(inputElem.name + ': NOT valid');
+            if (!this.submitValidationField(inputElem) 
+            ) {
                 return false;
             };
-        };
-        //политика обработки данных
-        let policyAgreeElem = event.target.querySelector('[name="policyAgree"]');
-        if (policyAgreeElem.checked == false) {
-            console.log(policyAgreeElem.name + ': False');
-            view.createNotificationFormElem(policyAgreeElem.closest('.registrFormPolicyAgree'), 'Agree with information policy.');
-            return false;
         };
 
         let formData = new FormData(event.srcElement);
@@ -47,22 +40,16 @@ export class Controller {
     formFieldFocus(event) {
         console.log(event.target.name +': focusIn');
         event.target.select();
-        event.target.style = null;
-
-        let targetContainer = event.target.closest('.inputContainer');
-        if (targetContainer && targetContainer.querySelector('.notificationFormElem')) view.removeNotificationFormElem(event);
+        //удаляем элементы-нотификации.
+        view.removeNotificationFormElem(event.target);
     }
 
     //Валидация поля при снятии с него фокусировки.
     fieldDataValidation(event) {
         console.log(event.target.name +': focusOut');
         //проверяем поля ввода.
-        if (event.target.className == 'registrFormField' && !this.submitValidationField(event.target)) {
+        if (!this.submitValidationField(event.target)) {
             return;
-        };
-        //проверка соглашения на обработку данных:
-        if (event.target.name == 'policyAgree' && event.target.checked == false) {
-            view.createNotificationFormElem(event.target.closest('.registrFormPolicyAgree'), 'Agree with information policy.');
         };
 
         //Проверка Логина на существование в форме регистрации;
@@ -79,7 +66,7 @@ export class Controller {
 
     phoneFieldAdd(event) {
         //console.log(event.data, event.target.value);
-        view.removeNotificationFormElem(event);
+        view.removeNotificationFormElem(event.target);
         //ТОЛЬКО ЧИСЛА ПРИ ВВОДЕ
         if (event.data && !event.data.match(/[1-9]/)) {
             console.log(event.data);
@@ -101,12 +88,24 @@ export class Controller {
         }
     }
 
+    //общая для всех полей (кроме policyAgree) проверка ввода
     submitValidationField(inputElem) {
-        if (!inputElem.value || inputElem.value == inputElem.defaultValue) {
-            console.log('validation');
+        //если поле было снято с фокуса и повторно не прошло проверку - старую нотификацию удаляем. (также чинит когда значение менялось без focusin).
+        view.removeNotificationFormElem(inputElem);
+        //поля ввода данных (все кроме политики).
+        if (inputElem.className == 'registrFormField' && (!inputElem.value || inputElem.value == inputElem.defaultValue)) {
+            console.log('validation not passed: ', inputElem.name);
             view.createNotificationFormElem(inputElem, 'Please, enter something in this field.');
             return false;
         };
+
+        //политика обработки данных.
+        if (inputElem.className == 'policyAgree' && inputElem.checked == false) {
+            console.log('validation not passed: ', inputElem.name);
+            view.createNotificationFormElem(inputElem.closest('.registrFormPolicyAgree'), 'Agree with information policy.');
+            return false;
+        };
+
         return true;
     }
 
@@ -116,8 +115,12 @@ export class Controller {
             event.preventDefault();
 
             if (this.submitValidationField(event.target) && event.target.name != 'policyAgree') {
-                let nextInputField = event.target.closest('.inputContainer').nextElementSibling.querySelector('.registrFormField');
-                nextInputField.select();
+                try {
+                    let nextInputField = event.target.closest('.inputContainer').nextElementSibling.querySelector('.registrFormField');
+                    nextInputField.select();
+                } catch (err) {
+                    console.log(err.stack);
+                }
             };
         }
     }

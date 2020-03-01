@@ -30,20 +30,36 @@ export class View {
         notivElem.classList.add('notificationFormElem');
 
         target.style.border = '2px solid red';
-        let targetContainer = target.closest('.inputContainer');
-        console.log(target, targetContainer);
-        targetContainer.append(notivElem);
+        try {
+            let targetContainer = target.closest('.inputContainer');
+            console.log(target, targetContainer);
+            targetContainer.append(notivElem);
+        } catch (err) {
+            console.log(err.stack);
+        };
     }
 
-    removeNotificationFormElem (event) {
-        let notivElem = event.target.closest('.inputContainer').querySelector('.notificationFormElem');
-        if (notivElem) notivElem.remove();
+    removeNotificationFormElem (target) {
+        //обнуляем стили поля ввода, добавленные в createNotificationFormElem.
+        try {
+            target.style = null;
+            //для политики обработки данных.
+            if (target.closest('.registrFormPolicyAgree')) target.closest('.registrFormPolicyAgree').style = null;
+            let notivElem = target.closest('.inputContainer').querySelector('.notificationFormElem');
+            if (notivElem) notivElem.remove();
+        } catch (err) {
+            console.log(err.stack);
+        }
     }
 
     createIncorrectNotification() {
         let incorrectNotificationElem = document.createElement('div');
         incorrectNotificationElem.className = 'incorrectNotif';
         incorrectNotificationElem.innerHTML = `Entered login or password is incorrect, please try again or use <a href='http://localhost:3000/#regFormContainer'>register form</a> to create new user.`;
+        try {
         loginForm.querySelector('.registrFormSubmit').append(incorrectNotificationElem);
+        } catch (err) {
+            console.log(err.stack);
+        };
     }
 }

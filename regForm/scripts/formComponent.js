@@ -10,11 +10,11 @@ class RegisterForm extends HTMLFormElement {
       <div class="inputContainer">
           <div class="registrFormPolicyAgree">
               <span>Agree private data policy</span>
-              <input type="checkbox" name="policyAgree" checked>
+              <input class="policyAgree" type="checkbox" name="policyAgree" checked>
           </div>
       </div>
       <div class="registrFormSubmit">
-          <input class="formSubmitButton" type="submit" value="Enter">
+          <input class="formSubmitButton" name="submitButton" type="submit" value="Enter">
       </div>`;
       this.className = 'registrForm';
     }
@@ -31,7 +31,7 @@ class LoginForm extends HTMLFormElement {
       <div is="input-container" data-name="userLogin" data-value="Enter login"></div>
       <div is="input-container" data-name="userPassword" data-value="Enter password"></div>
       <div class="registrFormSubmit">
-          <input class="formSubmitButton" type="submit" value="Enter">
+          <input class="formSubmitButton" name="submitButton" type="submit" value="Enter">
       </div>`;
       this.className = 'loginForm';
     }
