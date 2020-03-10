@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
+    <script type="module" defer src="window_handlers.js"></script>
     <script type="module" src="regForm\scripts\formComponent.js"></script>
     <script type="module" src="navigation/scripts/mvc_navigation.js" defer></script>
     <script type="module" src="regForm\scripts\mvc_regForm.js" defer></script>
@@ -20,7 +20,7 @@
             Header
             <div>
                 <button class="logOutButton" hidden>Log Out</button>
-                <a href='#regFormContainer'><button class="toRegisterButton">Register</button></a>
+                <button class="toRegisterButton">Register</button>
                 <button class="toLoginButton">Enter</button>
             </div>
         </header>
@@ -42,15 +42,14 @@
                     <div>This text about...</div>
                 </div>
                 <div class="registrFormContainer"> 
-                    <a name="regFormContainer"></a>
                     <form is="reg-form"></form>
                 </div>
             </div>
+            <div class="loginFormContainer" hidden>
+                <form is="login-form"></form>
+            </div>
         </div>
         <footer class="regPageFooter">Footer</footer>
-    </div>
-    <div class="loginFormContainer">
-        <form is="login-form"></form>
     </div>
 </body>
 </html>

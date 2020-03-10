@@ -65,6 +65,7 @@ async function f () {
 } ;
 
 f();*/
+
 app.get('/', (req, res) => {
     console.log(req.path);
     gets.getCategories()
@@ -72,6 +73,19 @@ app.get('/', (req, res) => {
             categories: result,
     }));
 
+})
+
+app.get('/loginPage', (req, res) => {
+    console.log(req.path);
+    res.redirect('/');
+})
+
+app.get('/textsViewingPage', (req, res) => {
+    console.log(req.path);
+    gets.getCategories()
+    .then(result => res.render("textsViewingPage/textsViewingPage.hbs", {
+        categories: result,
+}));
 })
 
 app.get('/add', (req, res) => {
@@ -130,7 +144,7 @@ app.post('/login', async(req, res) => {
     };
 })
 
-
+//СТАРАЯ отправка коммента
 app.post('/post/comment', async (req, res) => { 
     console.log(req.headers.cookie);
     let userLogin = await autentification.passUser(req.headers.cookie);
@@ -143,8 +157,29 @@ app.post('/post/comment', async (req, res) => {
     }
 } );
 
+//НОВАЯ отправка на сервер коммента
+app.post('/postComment', jsonParser, async (req, res) => { console.log(req.path); posts.postTextComment(req, res);});
+
 //выдача текста при нажатии в категориях
-app.get('/getText/:textName', (req, res) => gets.getText(req, res).catch((err) => console.log(err)) );
+app.get('/getText/:textName', async (req, res) => {
+    if (! await autentification.passUser(req.headers.cookie)) {
+        console.log('no access'); 
+        res.send(`{
+            "textName": "",
+            "textBody": "Register or login on site to read texts and comments"
+        }`);
+    };
+    gets.getText(req, res).catch((err) => console.log(err)) 
+} );
+
+app.get('/getComments/:textName', async (req, res) => {
+    let encode = req.params["textName"];
+    //let decodeTextName = decodeURI(encode);
+    console.log(encode);
+    let comments = await gets.getTextComments(encode);
+    res.send(JSON.stringify( {'comments': comments} ));
+})
+
 
 process.on("SIGINT", () => {
     dbClient.close();

@@ -2,6 +2,7 @@ const schemas = require("./mongoose_Schemas.js");
 
 
 module.exports.postComment = async function (uLogin, req, res) {
+    //старый метод .
     let Comment = schemas.Comment;
 
     console.log(req.path);
@@ -29,5 +30,29 @@ module.exports.loginValueCheckRegister = async function (loginValue) {
     console.log(userData);
     if (userData) return false
         else return true;
+
+}
+
+module.exports.postTextComment = async function (req, res)  {
+    let textComment = schemas.TextComment;
+    
+    let commentTextData = req.body;
+    console.log(commentTextData);
+
+    let obj = {
+        userLogin: commentTextData.userLogin,
+        textName: commentTextData.textName,
+        commentText: commentTextData.commentText,
+        commentDate: commentTextData.commentDate,
+    };
+    try {
+        let doc = await textComment.create(obj);
+        //console.log(await textComment.find({}));
+        console.log("comment got");
+        res.send("comment got");
+    } catch (err) {
+        console.log(`error: ${err.name}`);
+        res.send(`error: ${err.name}`);
+    }
 
 }

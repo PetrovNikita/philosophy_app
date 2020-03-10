@@ -53,11 +53,16 @@ module.exports.loginUserAutentification = async function (FData) {
 
 //при действии на странице
 module.exports.passUser = async function (cookie) {
-    let sessCookie;
-    for (let cook of cookie.split(';')) {
-        if (cook.split('=')[0] == 'sessionCookie') sessCookie = cook.split('=')[1];
-    }
+    try {
+        let sessCookie;
+        for (let cook of cookie.split(';')) {
+            if (cook.split('=')[0] == 'sessionCookie') sessCookie = cook.split('=')[1];
+        }
 
-    let userObj = await userAuthData.findOne({sessionCookie: sessCookie});
-    return userObj === null ? false : userObj.userLogin;
+        let userObj = await userAuthData.findOne({sessionCookie: sessCookie});
+        return userObj === null ? false : userObj.userLogin;
+    } catch (err) {
+        console.log('error');
+    };
+    return false;
 }

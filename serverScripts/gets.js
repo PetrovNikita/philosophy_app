@@ -65,3 +65,15 @@ module.exports.getText = async function(req, res) {
         console.log("Text not found");
     };
 }
+
+module.exports.getTextComments = async function (textName) {
+    let textComment = schemas.TextComment;
+    let comments;
+    try {
+        comments = await textComment.find({textName: textName});
+    } catch (err) {
+        console.log(err);
+    }
+    console.log(comments.length);
+    return comments;
+};

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="module" defer src="\window_handlers.js"></script>
+    <script type="module" src="\regForm\scripts\formComponent.js"></script>
+    <script type="module" src="\navigation/scripts/mvc_navigation.js" defer></script>
+    <script type="module" src="comments_mvc.js"></script>
+    <script type="module" src="\header\scripts\mvc_header.js" defer></script>
+    <link type="text/css" rel="stylesheet" href="\styles\regPageStyles.css">
+    <link type="text/css" rel="stylesheet" href="\regForm\styles\registrFormStyles.css">
+    <link type="text/css" rel="stylesheet" href="\navigation\styles\navigationStyles.css">
+    <link rel="stylesheet" href="commentStyles.css">
+</head>
+<body>
+    <div class="mainPageContainer">
+        <header class="regPageHeader">
+            Header
+            <div>
+                <button class="logOutButton">Log Out</button>
+            </div>
+        </header>
+        <div class="main">
+            <div class="categoriesNavContainer">
+                <nav class="categoriesNav">
+                    {{#each categories}}
+                        <div class="categoryContainer">
+                        <div class="categoryName">{{this.categoryName}}</div>
+                        {{#each this.textsNames}}
+                            <div class="textsNames" hidden>{{this}}</div>
+                        {{/each}}
+                        </div>
+                    {{/each}}
+                </nav>
+            </div>
+            <div class="textAndСommentContainer">
+                <div class="textsContainer">
+                    <div>Choose the text in navigation menu.</div>
+                </div>
+
+                <div class="commentFormContainer" hidden>
+                    <form class="commentForm">
+                        <fieldset>
+                            <legend>Add your comment</legend>
+                            <textarea name="commentText"cols="30" rows="3">Your comment</textarea>
+                        </fieldset>
+                        <input type="submit" value="Send comment">
+                    </form>
+                </div>
+
+                <div class="commentContainer" hidden>
+                </div>
+            </div>
+        </div>
+        <footer class="regPageFooter">Footer</footer>
+    </div>
+</body>
+</html>

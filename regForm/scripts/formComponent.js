@@ -52,6 +52,3 @@ customElements.define('login-form', LoginForm, {extends: 'form'});
   }
   customElements.define('input-container', InputContainer, {extends: 'div'});
 
-  //костылек для формы логина
-console.log(document.querySelector('.loginFormContainer'), document.querySelector('.loginForm').hidden)
-document.querySelector('.loginFormContainer').hidden = true;

@@ -36,3 +36,11 @@ let textSchema = new Schema({
     textBody: String,
 })
 module.exports.Text = mongoose.model("Text", textSchema);
+
+let textCommentSchema = new Schema({
+    userLogin: String,
+    textName: String,
+    commentText: String,
+    commentDate: Date,
+})
+module.exports.TextComment = mongoose.model("TextComment", textCommentSchema);

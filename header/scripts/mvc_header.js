@@ -10,12 +10,18 @@ class View {
     }
 
     addFormListeners() {
-        let logOutButton = document.querySelector('.logOutButton');
-        logOutButton.addEventListener('mousedown', event => controller.logOut(event));
+        try {
+            let logOutButton = document.querySelector('.logOutButton');
+            logOutButton.addEventListener('mousedown', event => controller.logOut(event));
 
-        let toLoginButton = document.querySelector('.toLoginButton');
-        toLoginButton.addEventListener('click', (event) => controller.toLoginPage(event));
+            let toLoginButton = document.querySelector('.toLoginButton');
+            toLoginButton.addEventListener('click', (event) => controller.toLoginPage(event));
 
+            let toRegistrButton = document.querySelector('.toRegisterButton');
+            toRegistrButton.addEventListener('click', (event) => controller.toRegistrForm(event));
+        } catch (err) {
+            console.log(err.stack)
+        };
     }
 }
 
@@ -27,8 +33,15 @@ class Controller {
     }
 
     logOut(event) {
-        event.preventDefault();
         document.cookie = document.cookie + ';max-age=-1';
+        document.location.href = "http://localhost:3000/";
+    }
+
+    toRegistrForm(event) {
+        //console.log(event, event.target.baseURI, document.location.href);
+        if (document.location.href.endsWith("/loginPage")) {
+            document.location.href = "http://localhost:3000/";
+        };
     }
 }
 

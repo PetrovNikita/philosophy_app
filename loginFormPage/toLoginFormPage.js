@@ -1,12 +1,10 @@
 export function updatePageToLoginForm() {
-    history.pushState({state:'loginFormPage'}, 'loginPage', 'loginPage.html');
-    document.querySelector('.mainPageContainer').hidden = true;
+    history.pushState('loginFormPage', 'login', 'loginPage');
+    document.querySelector('.textAndFormContainer').hidden = true;
+    document.querySelector('.categoriesNavContainer').hidden = true;
 
     document.querySelector('.loginFormContainer').hidden = false;
 
-    window.onpopstate = (event) => {
-        if (event.state == null) document.location.href = 'http://localhost:3000';
-    }
     //если придется возвращаться назад, то делаем запрос.
     /*let notToLoginFieldsNames = ['userName', 'userPhone'];
     let regForm = document.querySelector('.registrForm');

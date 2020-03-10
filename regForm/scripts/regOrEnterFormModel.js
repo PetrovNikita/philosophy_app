@@ -11,8 +11,7 @@ export class Model {
             let resp = await post.text();
             console.log(resp);
             if (resp == 'success') {
-    //переход на страницу с формами.
-                //document.location.href = 'http://localhost:3000/add';
+                localStorage.setItem('userLogin', formData.get('userLogin'));
                 controller.toTextsViewingPage();
             };
             if (resp == 'User_Exist') {
@@ -34,8 +33,8 @@ export class Model {
             let resp = await post.text();
             console.log(resp);
             if (resp == 'success') {
-    //переход на страницу с формами.
-                document.location.href = 'http://localhost:3000/add';
+                localStorage.setItem('userLogin', formData.get('userLogin'));
+                controller.toTextsViewingPage();
             };
             if (resp == 'Incorrect_Password' || resp == 'No_User_Found') {
                 controller.incorrectFormData();
