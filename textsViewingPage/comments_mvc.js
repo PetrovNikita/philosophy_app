@@ -4,9 +4,11 @@ class View {
     }
 
     addEventListeners() {
-        let commentForm = document.querySelector('.commentForm');
-        console.log(commentForm);
-        commentForm.addEventListener('submit', (event) => {controller.postComment(event)});
+        try {
+            let commentForm = document.querySelector('.commentForm');
+            console.log(commentForm);
+            commentForm.addEventListener('submit', (event) => {controller.postComment(event)});
+        } catch (err) {console.log(err);}
     }
 
     showComment(commentObj) {

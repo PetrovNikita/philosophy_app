@@ -5,8 +5,11 @@ class RegisterForm extends HTMLFormElement {
       this.innerHTML = `<div class="formHeader"><span>Fill the form to register</span></div>
       <div is="input-container" data-name="userName" data-value="Enter your first name"></div>
       <div is="input-container" data-name="userLogin" data-value="Enter login"></div>
-      <div class="inputContainer"><input class="registrFormField" type="text" name="userPassword" value="Enter password"></div>
-      <div class="inputContainer"><input class="registrFormField" type="text" name="userPhone" value="8(999)111-11-11"></div>
+      <div class="inputContainer">
+        <input class="registrFormField" type="text" name="userPassword" value="Enter password">
+        <span class="showPassword">show<span>
+      </div>
+      <div class="inputContainer"><input class="registrFormField" type="text" name="userPhone" value="Enter mobile phone number"></div>
       <div class="inputContainer">
           <div class="registrFormPolicyAgree">
               <span>Agree private data policy</span>
@@ -21,7 +24,7 @@ class RegisterForm extends HTMLFormElement {
   
   }
 customElements.define('reg-form', RegisterForm, {extends: 'form'});
-  
+
 
 class LoginForm extends HTMLFormElement { 
     constructor() {
@@ -29,7 +32,10 @@ class LoginForm extends HTMLFormElement {
       //this.addEventListener('click', () => alert("Привет!"));
       this.innerHTML = `<div class="formHeader"><span>Fill the form to register</span></div>
       <div is="input-container" data-name="userLogin" data-value="Enter login"></div>
-      <div is="input-container" data-name="userPassword" data-value="Enter password"></div>
+      <div class="inputContainer">
+        <input class="registrFormField" type="text" name="userPassword" value="Enter password">
+        <span class="showPassword">show<span>
+      </div>
       <div class="registrFormSubmit">
           <input class="formSubmitButton" name="submitButton" type="submit" value="Enter">
       </div>`;
