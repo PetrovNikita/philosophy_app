@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const posts = require("./serverScripts/posts");
 const gets = require("./serverScripts/gets");
 const autentification = require("./serverScripts/autentification");
+const initialization = require("./textsAndCategoriesInitialization");
  
 var app = express();
 var jsonParser = bodyParser.json();

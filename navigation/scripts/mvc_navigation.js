@@ -1,5 +1,3 @@
-import {controller as commentsController} from '/textsViewingPage/comments_mvc.js';
-
 let navButtonAdd = window.matchMedia("(max-width: 600px)").matches;
 
 class View {
@@ -34,7 +32,7 @@ class View {
     showChoosenText(textObj) {
         document.querySelector('.textsContainer').innerHTML = `<h2>${textObj.textName}</h2>${textObj.textBody}`;
         document.querySelector('.commentFormContainer').hidden = false;
-        document.querySelector('.commentContainer').hidden = false;
+        document.querySelector('.commentsContainer').hidden = false;
     }
 
 }
@@ -58,13 +56,14 @@ class Controller {
 
     getChoosenText(event) {
         if (!event.target.classList.contains('textsNames')) return false;
-
-        let textObj = model.getText(event.target.innerText)
+        let textName = event.target.innerText;
+        let textObj = model.getText(textName)
             .then(res => {
                 console.log(res);
                 view.showChoosenText(res);
             });
         
+        window.showCommentsComponent(textName);
     }
 
 }
@@ -74,7 +73,6 @@ class Model {
         sessionStorage.setItem('textName', textName);
         let textObj = await fetch(`/getText/${textName}`);
         let text = await textObj.json();
-        commentsController.getTextComments(textName);
 
         return text;
     }

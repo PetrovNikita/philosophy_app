@@ -1,6 +1,5 @@
 import {model as model, view as view} from '/regForm/scripts/mvc_regForm.js';
-import {view as header_view} from '/header/scripts/mvc_header.js';
-import {updateToTextsViewingPage} from '/textsViewingPage/updateToTextsViewingPage.js'
+import {updateToTextsViewingPage} from '/textsViewingPage/updateToTextsViewingPage.js';
 
 export class Controller {
 
@@ -38,9 +37,37 @@ export class Controller {
         model.postLoginFrom(formData);
     }
 
+    usedUserLogin(event) {
+        if (event.target.name == 'userLogin') {
+            event.target.value = localStorage.userLogin;
+        }
+    }
+
+    passwordMasking(event) {
+        if (event.target.name == 'userPassword') {
+            event.target.setAttribute('type', 'password');
+        }
+    }
+
+    showPassword(event) {
+        let passwordInput = event.target.parentElement.querySelector('[name = "userPassword"]');
+        console.log(passwordInput, passwordInput.type);
+        if (passwordInput.type == 'password') {
+            passwordInput.type = 'text';
+            event.target.innerHTML = 'Hide';
+        } ;
+
+        if (passwordInput.type == 'text') {
+            passwordInput.type = 'password';
+            event.target.innerHTML = 'Show';
+        } ;
+    }
+
     formFieldFocus(event) {
         console.log(event.target.name +': focusIn');
+        this.usedUserLogin(event);
         event.target.select();
+        this.passwordMasking(event);
         //удаляем элементы-нотификации.
         view.removeNotificationFormElem(event.target);
     }
@@ -65,6 +92,10 @@ export class Controller {
         };
     }
 
+    phoneFieldInput(event) {
+        if (event.inputType == "insertText") this.phoneFieldAdd(event);
+    }
+
     phoneFieldAdd(event) {
         //console.log(event.data, event.target.value);
         view.removeNotificationFormElem(event.target);
@@ -77,6 +108,12 @@ export class Controller {
 
         //ФОРМАТ
         let symbolMap = new Map([[1, '('], [5, ')'], [9, '-'], [12, '-']]);
+        //на случай, если последним бэкспейсом остановились на том месте, где должен быть символ из мапы, и начали ввод.
+        if (symbolMap.has(event.target.value.length-1)) {
+            console.log('yes -1');
+            event.target.value = event.target.value.slice(0, -1) + symbolMap.get(event.target.value.length-1) + event.target.value.slice(-1) ;
+        };
+        //если ввод подряд (без бэкспейсов)
         if (symbolMap.has(event.target.value.length)) {
             //console.log('yes');
             event.target.value = event.target.value + symbolMap.get(event.target.value.length);
@@ -110,8 +147,16 @@ export class Controller {
         return true;
     }
 
+    loginPasswordFieldAdd(event) {
+        view.removeNotificationFormElem(event.target);
+        if (!event.data.match(/[1-9a-zA-Z]/)) {
+            event.target.value = event.target.value.slice(0, -1);
+            view.createNotificationFormElem(event.target, "Please, enter only latin letters or numbers.");
+        }
+    }
+
     enterOnField(event) {
-        console.log(event);
+        //console.log(event);
         if (event.code == 'Enter') {
             event.preventDefault();
 

@@ -1,5 +1,4 @@
 import {controller} from './mvc_regForm.js';
-import {view as header_view} from '/header/scripts/mvc_header.js';
 
 let regForm = document.querySelector('.registrForm');
 let loginForm = document.querySelector('.loginForm');
@@ -14,13 +13,17 @@ export class View {
         regForm.addEventListener('submit', (event) => controller.formDataToModel(event));
         regForm.addEventListener('focusin', (event) => controller.formFieldFocus(event));
         regForm.addEventListener('focusout', (event) => controller.fieldDataValidation(event));
-        regForm.querySelector('[name="userPhone"]').addEventListener('input', (event) => controller.phoneFieldAdd(event));
+        regForm.querySelector('[name="userPhone"]').addEventListener('input', (event) => controller.phoneFieldInput(event));
+        regForm.querySelector('[name = "userLogin"]').addEventListener('input', (event) => controller.loginPasswordFieldAdd(event));
+        regForm.querySelector('[name = "userPassword"]').addEventListener('input', (event) => controller.loginPasswordFieldAdd(event));
+        regForm.querySelector('.showPassword').addEventListener('click', (event) => controller.showPassword(event));
         regForm.addEventListener('keydown', (event) => controller.enterOnField(event));
 
         
         loginForm.addEventListener('submit', (event) => controller.loginFormDataToModel(event));
         loginForm.addEventListener('focusin', (event) => controller.formFieldFocus(event));
         loginForm.addEventListener('focusout', (event) => controller.fieldDataValidation(event));
+        loginForm.querySelector('.showPassword').addEventListener('click', (event) => controller.showPassword(event));
         loginForm.addEventListener('keydown', (event) => controller.enterOnField(event));
     }
 

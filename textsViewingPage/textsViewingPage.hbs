@@ -8,8 +8,14 @@
     <script type="module" defer src="\window_handlers.js"></script>
     <script type="module" src="\regForm\scripts\formComponent.js"></script>
     <script type="module" src="\navigation/scripts/mvc_navigation.js" defer></script>
-    <script type="module" src="comments_mvc.js"></script>
     <script type="module" src="\header\scripts\mvc_header.js" defer></script>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel" src="..\header\scripts\headerComponent.jsx" defer></script>
+    <script type="text/babel" src="commentComponent.jsx" defer></script>
+
     <link type="text/css" rel="stylesheet" href="\styles\regPageStyles.css">
     <link type="text/css" rel="stylesheet" href="\regForm\styles\registrFormStyles.css">
     <link type="text/css" rel="stylesheet" href="\navigation\styles\navigationStyles.css">
@@ -18,7 +24,7 @@
 <body>
     <div class="mainPageContainer">
         <header class="regPageHeader">
-            Header
+            <div class="headerComponent"></div>
             <div>
                 <button class="logOutButton">Log Out</button>
             </div>
@@ -40,19 +46,7 @@
                 <div class="textsContainer">
                     <div>Choose the text in navigation menu.</div>
                 </div>
-
-                <div class="commentFormContainer" hidden>
-                    <form class="commentForm">
-                        <fieldset>
-                            <legend>Add your comment</legend>
-                            <textarea name="commentText"cols="30" rows="3">Your comment</textarea>
-                        </fieldset>
-                        <input type="submit" value="Send comment">
-                    </form>
-                </div>
-
-                <div class="commentContainer" hidden>
-                </div>
+                <div class="commentsAndFormContainer"></div>
             </div>
         </div>
         <footer class="regPageFooter">Footer</footer>
