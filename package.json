@@ -22,6 +22,6 @@
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1"
   },
   "scripts": {
-    "start": "node commentApp.js"
+    "start": "nodemon commentApp.js"
   }
 }

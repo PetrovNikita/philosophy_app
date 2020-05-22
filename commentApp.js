@@ -29,48 +29,10 @@ mongoose.connect("mongodb://localhost:27017/commentdb", { useNewUrlParser: true 
     });
 });
 
-
-
-/* Тест монги
-let com = {
-    login: 'abc',
-    password: 'a',
-    comments: [
-        {
-            commentPlace: 'b',
-            commentDate: new Date() 
-        },
-        {
-            commentText: 'efsrsv',
-        }
-    ]
-}
-let comment = new Comment(com); */
-
-/*
-Тест Монги. Remove работает только с кол-бэком
-comment.save()
-    .then( (doc)=> {console.log(doc); Comment.remove({}, (err, doc) => {console.log(doc)}); })
-    .then(res => console.log(res) )
-    .then( () => Comment.find({}) )
-    .then((docs) => console.log(docs));
-    */
-
-/*
-Тест монги № 2.
-async function f () {
-    await comment.save();
-    let rem = await Comment.remove();
-    let docs = await Comment.find();
-    console.log(rem, docs);
-} ;
-
-f();*/
-
 app.get('/', (req, res) => {
     console.log(req.path);
     gets.getCategories()
-        .then(result => res.render("registrationPage.hbs", {
+        .then(result => res.render("./regpage/registrationPage.hbs", {
             categories: result,
     }));
 
@@ -88,17 +50,6 @@ app.get('/textsViewingPage', (req, res) => {
         categories: result,
 }));
 })
-
-app.get('/add', (req, res) => {
-    console.log(req.path);
-    res.render("form.hbs", {
-        userLastName: "Kryash",
-        topic: "How I meet her",
-        }
-    //, (err, html)=> res.end(html)
-    );
-        //.sendFile(__dirname + '/commentForm/form.html');
-});
 
 app.get('/get/comment/:userLogin', (req, res) => {
     gets.getUserCommentsbyLogin(req, res).catch(( err) => console.log(err));
@@ -175,7 +126,6 @@ app.get('/getText/:textName', async (req, res) => {
 
 app.get('/getComments/:textName', async (req, res) => {
     let encode = req.params["textName"];
-    //let decodeTextName = decodeURI(encode);
     console.log(encode);
     let comments = await gets.getTextComments(encode);
     res.send(JSON.stringify( {'comments': comments} ));
@@ -187,7 +137,4 @@ process.on("SIGINT", () => {
     process.exit();
 });
 
-
-
-//nodemon commentApp.js
 

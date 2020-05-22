@@ -1,13 +1,12 @@
 class RegisterForm extends HTMLFormElement { 
     constructor() {
       super();
-      //this.addEventListener('click', () => alert("Привет!"));
       this.innerHTML = `<div class="formHeader"><span>Fill the form to register</span></div>
       <div is="input-container" data-name="userName" data-value="Enter your first name"></div>
       <div is="input-container" data-name="userLogin" data-value="Enter login"></div>
       <div class="inputContainer">
         <input class="registrFormField" type="text" name="userPassword" value="Enter password">
-        <span class="showPassword">show<span>
+        <button class="showPassword">show</button>
       </div>
       <div class="inputContainer"><input class="registrFormField" type="text" name="userPhone" value="Enter mobile phone number"></div>
       <div class="inputContainer">
@@ -34,7 +33,7 @@ class LoginForm extends HTMLFormElement {
       <div is="input-container" data-name="userLogin" data-value="Enter login"></div>
       <div class="inputContainer">
         <input class="registrFormField" type="text" name="userPassword" value="Enter password">
-        <span class="showPassword">show<span>
+        <button class="showPassword">show</button>
       </div>
       <div class="registrFormSubmit">
           <input class="formSubmitButton" name="submitButton" type="submit" value="Enter">

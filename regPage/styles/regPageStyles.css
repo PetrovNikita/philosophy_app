@@ -1,11 +1,11 @@
 .main {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 
 .categoriesNavContainer {
     flex-basis: 40%;
-    background-color: burlywood;
     cursor: pointer;
 }
 
@@ -17,17 +17,17 @@
 }
 
 .textAndFormContainer {
-    flex-basis: 100%;
+    flex-basis: 50%;
+    padding: 10px;
 }
 
 .textsContainer {
-    grid-area: text;
-    background-color: chartreuse;
-}
-
-.registrFormContainer {
-    grid-area: form;
-    background-color: coral;
+    border: burlywood 2px solid;
+    padding: 5px;
 }
 
 
+.regPageFooter {
+    background-color: grey;
+    text-align: center;
+}

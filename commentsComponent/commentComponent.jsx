@@ -2,7 +2,6 @@ let commentsList ;
 
 window.showCommentsComponent = function showCommentsComponent(textName) {
     let domContainer = document.querySelector('.commentsAndFormContainer');
-    console.log(domContainer);
     ReactDOM.render( <FormAndCommentsContainer textName={textName} />, domContainer);
 };
 
@@ -13,10 +12,8 @@ class FormAndCommentsContainer extends React.Component {
     }
 
     componentDidMount() {
-        //let encodeTextName = encodeURI(textName);
-        //console.log(encodeTextName);
         this.getComments(this.props.textName)
-            .then( res => {this.setState({comments: res})});
+        .then( res => {this.setState({comments: res})});
     }
 
     componentDidUpdate(prevProps) {
@@ -62,7 +59,7 @@ class FormAndCommentsContainer extends React.Component {
 class CommentForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {commentText: 'Yout comment'};
+        this.state = {};
         this.handleCommentTextChange = this.handleCommentTextChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -112,7 +109,7 @@ class CommentForm extends React.Component {
             <form className="commentForm" onSubmit={this.handleSubmit}>
                 <fieldset>
                     <legend>Add your comment</legend>
-                    <textarea name="commentText" onChange={this.handleCommentTextChange} value={this.state.commentText} cols="30" rows="3"></textarea>
+                    <textarea name="commentText" onChange={this.handleCommentTextChange} value={this.state.commentText} placeholder="Your comment" cols="30" rows="3"></textarea>
                 </fieldset>
                 <input type="submit" value="Send comment"></input>
             </form>
@@ -122,22 +119,22 @@ class CommentForm extends React.Component {
 };
 
 //показывает комменты из getComments(textName)
-function CommentsContainer(props) {
+function CommentsContainer({ comments }) {
 
     return (
         <div className='commentsContainer'>
-            {props.comments ? props.comments.map(comment => <Comment key={comment.commentText} commentObj={comment}></Comment>) : 'There will be comments...'}
+            {comments ? comments.map(comment => <Comment key={`${comment.commentText}|${comment.commentDate}`} {...comment}></Comment>) : 'There will be comments...'}
         </div>
     )
 }
 
 
-function Comment(props) {
+function Comment({ userLogin, commentDate, commentText }) {
     return (
         <div className='commentInstance'>
-            {props.commentObj.userLogin} commented at {props.commentObj.commentDate}.
+            {userLogin} commented at {commentDate.toLocaleString()}.
             <div className = 'commentText'>
-                {props.commentObj.commentText}
+                {commentText}
             </div>
         </div>
     );

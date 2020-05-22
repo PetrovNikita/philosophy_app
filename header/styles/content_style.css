@@ -25,6 +25,7 @@
 
 .tooglerHeaderAdditionalContent {
     color: blue;
+    cursor: pointer;
 }
 
 .headerButton {

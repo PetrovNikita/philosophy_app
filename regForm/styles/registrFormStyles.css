@@ -1,17 +1,30 @@
 .registrForm {
     display: inline-block;
+    margin: 10px;
     border: 2px solid yellow;
     border-radius: 10px;
 }
 
 .loginForm {
     display: inline-block;
+    margin: 10px;
     border: 2px solid green;
     border-radius: 10px;
 }
 
+.formHeader {
+    font-size: large;
+    font-weight: 600;
+}
+
+.inputContainer {
+    width: max-content;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
 .registrFormField {
-    display: inline;
+    flex-basis: 80%;
     margin: 5px;
     padding: 5px;
     border: 1px solid blanchedalmond;
@@ -40,17 +53,24 @@
 }
 
 .registrFormSubmit {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    
-    padding: 5px 10px;
+    padding: 5px;
 }
 
-.registrFormSubmitButton {
+.formSubmitButton {
     width: 50%;
     background-color: yellow;
     border: 1px solid black;
-    border-radius: 10%;
+    margin-left: 50%;
+    border-radius: 5px;
+    padding: 5px;
 }
 
+.showPassword {
+    flex-basis: 10%;
+    cursor: pointer;
+    margin: 5px;
+    padding: 5px;
+    background-color: yellow;
+    border: 1px black solid;
+    border-radius: 5px;
+}
