@@ -6,7 +6,11 @@ class RegisterForm extends HTMLFormElement {
       <div is="input-container" data-name="userLogin" data-value="Enter login"></div>
       <div class="inputContainer">
         <input class="registrFormField" type="text" name="userPassword" value="Enter password">
+<<<<<<< HEAD
         <button class="showPassword">show</button>
+=======
+        <span class="showPassword">show<span>
+>>>>>>> 074d24f423e13ec5d976fed0cce97e92ef748b5f
       </div>
       <div class="inputContainer"><input class="registrFormField" type="text" name="userPhone" value="Enter mobile phone number"></div>
       <div class="inputContainer">
@@ -33,7 +37,11 @@ class LoginForm extends HTMLFormElement {
       <div is="input-container" data-name="userLogin" data-value="Enter login"></div>
       <div class="inputContainer">
         <input class="registrFormField" type="text" name="userPassword" value="Enter password">
+<<<<<<< HEAD
         <button class="showPassword">show</button>
+=======
+        <span class="showPassword">show<span>
+>>>>>>> 074d24f423e13ec5d976fed0cce97e92ef748b5f
       </div>
       <div class="registrFormSubmit">
           <input class="formSubmitButton" name="submitButton" type="submit" value="Enter">

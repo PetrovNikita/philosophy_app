@@ -51,12 +51,23 @@ export class Controller {
 
     showPassword(event) {
         let passwordInput = event.target.parentElement.querySelector('[name = "userPassword"]');
+<<<<<<< HEAD
         console.log(passwordInput, passwordInput.getAttribute('type'));
         if (passwordInput.type === "password") {
             passwordInput.type = 'text';
             event.target.innerHTML = 'Hide';
         } else if (passwordInput.type === "text") {
             passwordInput.type= 'password';
+=======
+        console.log(passwordInput, passwordInput.type);
+        if (passwordInput.type == 'password') {
+            passwordInput.type = 'text';
+            event.target.innerHTML = 'Hide';
+        } ;
+
+        if (passwordInput.type == 'text') {
+            passwordInput.type = 'password';
+>>>>>>> 074d24f423e13ec5d976fed0cce97e92ef748b5f
             event.target.innerHTML = 'Show';
         } ;
     }
